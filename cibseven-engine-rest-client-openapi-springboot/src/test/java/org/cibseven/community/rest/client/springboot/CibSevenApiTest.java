@@ -19,7 +19,7 @@ public class CibSevenApiTest {
   Stream<DynamicTest> shouldHaveAllApisAsBean() {
     List<Class<?>> allApis =
         ReflectionSupport.findAllClassesInPackage(
-            "org.camunda.community.rest.client.api", c -> !c.isAnonymousClass(), s -> true);
+            "org.cibseven.community.rest.client.api", c -> !c.isAnonymousClass(), s -> true);
     return allApis.stream()
         .map(
             c ->
