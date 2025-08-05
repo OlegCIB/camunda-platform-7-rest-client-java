@@ -20,7 +20,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.util.DigestUtils;
 
-/** Auto deploys all Camunda resources found on classpath during startup of the application */
+/** Auto deploys all CIB seven resources found on classpath during startup of the application */
 @AutoConfiguration
 @EnableConfigurationProperties(CibSevenAutodeploymentProperties.class)
 public class CibSevenProcessAutodeployment {
@@ -44,7 +44,7 @@ public class CibSevenProcessAutodeployment {
 
   // TODO Possible extension: Provide a @Deployment annotation like Spring Zeebe
   @EventListener(ApplicationStartedEvent.class)
-  public void deployCamundaResources() throws IOException, ApiException {
+  public void deployCibSevenResources() throws IOException, ApiException {
     if (!properties.isEnabled()) {
       return;
     }
@@ -59,7 +59,7 @@ public class CibSevenProcessAutodeployment {
   private void deployResources(List<Resource> resourcesToDeploy, String type)
       throws IOException, ApiException {
     logger.info("Found resources for deployment of type " + type + ": " + resourcesToDeploy);
-    for (Resource camundaResource : resourcesToDeploy) {
+    for (Resource resource : resourcesToDeploy) {
       // We have to create a tmpFile because we need to read the files via InputStream to work also
       // in a jar-packed environment
       // but the OpenAPI will need a File.
@@ -67,13 +67,13 @@ public class CibSevenProcessAutodeployment {
       // (because otherwise the deployer will not pick it up as e.g. BPMN file)
       try {
         String tempDirectoryName = FileUtils.getTempDirectory().getAbsolutePath();
-        String filename = getResourceFilename(camundaResource, type);
+        String filename = getResourceFilename(resource, type);
         final File tempFile = new File(tempDirectoryName + File.separator + filename);
         tempFile.deleteOnExit();
         try (FileOutputStream out = new FileOutputStream(tempFile)) {
-          IOUtils.copy(camundaResource.getInputStream(), out);
+          IOUtils.copy(resource.getInputStream(), out);
         }
-        logger.info("  - Now deploying: " + camundaResource);
+        logger.info("  - Now deploying: " + resource);
         deploymentApi.createDeployment(
             null,
             null,
@@ -90,15 +90,15 @@ public class CibSevenProcessAutodeployment {
         }
       }
       // deploying the files one by one because of limitation of OpenAPI at the moment
-      // see https://jira.camunda.com/browse/CAM-13105
+      // see https://github.com/cibseven/cibseven/issues/CAM-13105
     }
   }
 
-  private String getResourceFilename(Resource camundaResource, String type) throws IOException {
-    if (camundaResource.getFilename() != null) {
-      return camundaResource.getFilename();
+  private String getResourceFilename(Resource resource, String type) throws IOException {
+    if (resource.getFilename() != null) {
+      return resource.getFilename();
     } else {
-      return DigestUtils.md5DigestAsHex(camundaResource.getInputStream()) + '.' + type;
+      return DigestUtils.md5DigestAsHex(resource.getInputStream()) + '.' + type;
     }
   }
 }
