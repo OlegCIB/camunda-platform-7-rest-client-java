@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
       "camunda.autoDeploy.failStartupOnError=false"
     })
 public class LegacyPropertiesTest {
-  @Autowired CamundaAutodeploymentProperties properties;
+  @Autowired CibSevenAutodeploymentProperties properties;
 
   @Test
   void shouldRun() {}

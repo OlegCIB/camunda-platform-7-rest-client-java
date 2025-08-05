@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
-public class CamundaApiTest {
+public class CibSevenApiTest {
   @Autowired ApplicationContext applicationContext;
 
   @TestFactory

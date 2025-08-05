@@ -22,19 +22,19 @@ import org.springframework.util.DigestUtils;
 
 /** Auto deploys all Camunda resources found on classpath during startup of the application */
 @AutoConfiguration
-@EnableConfigurationProperties(CamundaAutodeploymentProperties.class)
-public class CamundaProcessAutodeployment {
+@EnableConfigurationProperties(CibSevenAutodeploymentProperties.class)
+public class CibSevenProcessAutodeployment {
 
-  private static final Logger logger = LoggerFactory.getLogger(CamundaProcessAutodeployment.class);
+  private static final Logger logger = LoggerFactory.getLogger(CibSevenProcessAutodeployment.class);
   private final DeploymentApi deploymentApi;
   private final ResourcePatternResolver patternResolver;
-  private final CamundaAutodeploymentProperties properties;
+  private final CibSevenAutodeploymentProperties properties;
   private final String applicationName;
 
-  public CamundaProcessAutodeployment(
+  public CibSevenProcessAutodeployment(
       DeploymentApi deploymentApi,
       ResourcePatternResolver patternResolver,
-      CamundaAutodeploymentProperties properties,
+      CibSevenAutodeploymentProperties properties,
       @Value("${spring.application.name:spring-app}") String applicationName) {
     this.deploymentApi = deploymentApi;
     this.patternResolver = patternResolver;

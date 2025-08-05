@@ -12,8 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
       "camunda.bpm.client.basic-auth.password=password",
       "camunda.bpm.client.base-url=http://base-url/engine-rest"
     })
-public class CamundaOpenApiStarterTest {
-  @Autowired CamundaOpenApiStarter starter;
+public class CibSevenOpenApiStarterTest {
+  @Autowired CibSevenOpenApiStarter starter;
 
   @Test
   void shouldSetBaseUrl() {

@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration
-public class CamundaHistoryApi {
+public class CibSevenHistoryApi {
 
   private final ApiClient apiClient;
 
-  public CamundaHistoryApi(ApiClient apiClient) {
+  public CibSevenHistoryApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 

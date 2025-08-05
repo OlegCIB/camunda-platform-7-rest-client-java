@@ -3,7 +3,7 @@ package org.cibseven.community.rest.client.springboot;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("camunda.auto-deploy")
-public class CamundaAutodeploymentProperties {
+public class CibSevenAutodeploymentProperties {
   private String bpmnResources = "classpath*:**/*.bpmn";
   private String dmnResources = "classpath*:**/*.dmn";
   private String formResources = "classpath*:**/*.form";

@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class AppTest {
-  @Autowired CamundaAutodeploymentProperties properties;
-  @Autowired CamundaOpenApiStarter starter;
+  @Autowired CibSevenAutodeploymentProperties properties;
+  @Autowired CibSevenOpenApiStarter starter;
 
   @Test
   void shouldRun() {}

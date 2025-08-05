@@ -6,16 +6,21 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration
-public class CamundaOpenApiStarter {
+public class CibSevenOpenApiStarter {
 
   private final String basePath;
   private final String username;
   private final String password;
 
-  public CamundaOpenApiStarter(
-      @Value("${camunda.bpm.client.base-url:#{null}}") String basePath,
-      @Value("${camunda.bpm.client.basic-auth.username:#{null}}") String username,
-      @Value("${camunda.bpm.client.basic-auth.password:#{null}}") String password) {
+  public CibSevenOpenApiStarter(
+      @Value("${cibseven.bpm.client.base-url:${camunda.bpm.client.base-url:#{null}}}")
+          String basePath,
+      @Value(
+              "${cibseven.bpm.client.basic-auth.username:${camunda.bpm.client.basic-auth.username:#{null}}}")
+          String username,
+      @Value(
+              "${cibseven.bpm.client.basic-auth.password:${camunda.bpm.client.basic-auth.password:#{null}}}")
+          String password) {
     this.basePath = basePath;
     this.username = username;
     this.password = password;
